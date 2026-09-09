@@ -1,0 +1,28 @@
+{
+  "name": "hazem-hassan-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@fontsource/inter": "latest",
+    "@fontsource/jetbrains-mono": "latest",
+    "@fontsource/manrope": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@vitejs/plugin-react": "latest",
+    "jsdom": "^29.0.0",
+    "vite": "latest",
+    "vitest": "latest"
+  }
+}
