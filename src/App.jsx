@@ -187,16 +187,22 @@ function ContactForm() {
     }
 
     setStatus({ type: "sending", message: "Sending your enquiry…" });
-    const formData = new FormData(form);
-    formData.set("access_key", accessKey);
-    formData.set("subject", "New portfolio enquiry for Hazem Hassan");
-    formData.set("from_name", "Hazem Hassan Portfolio");
+    const submittedFields = Object.fromEntries(new FormData(form));
+    const payload = {
+      ...submittedFields,
+      access_key: accessKey,
+      subject: "New portfolio enquiry for Hazem Hassan",
+      from_name: "Hazem Hassan Portfolio",
+    };
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(payload),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
       const result = await response.json();
 

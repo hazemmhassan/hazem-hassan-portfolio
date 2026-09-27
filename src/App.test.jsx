@@ -148,8 +148,14 @@ describe("portfolio homepage", () => {
     const [endpoint, request] = fetchMock.mock.calls[0];
     expect(endpoint).toBe("https://api.web3forms.com/submit");
     expect(request.method).toBe("POST");
-    expect(request.body.get("access_key")).toBe("test-access-key");
-    expect(request.body.get("subject")).toMatch(/portfolio enquiry/i);
+    expect(request.headers).toEqual({
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    });
+    const submittedData = JSON.parse(request.body);
+    expect(submittedData.access_key).toBe("test-access-key");
+    expect(submittedData.subject).toMatch(/portfolio enquiry/i);
+    expect(submittedData.name).toBe("Mona Client");
     expect(await screen.findByRole("status")).toHaveTextContent(/message was sent/i);
   });
 
