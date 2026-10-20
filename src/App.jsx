@@ -2,8 +2,28 @@ import { useState } from "react";
 
 const projects = [
   {
-    id: "talent-search",
+    id: "opshub",
     index: "01",
+    type: "Workflow automation · Bilingual systems",
+    title: "OpsHub",
+    challenge:
+      "Small teams often receive service requests through disconnected messages, forms, and spreadsheets, making decisions and automation failures difficult to track.",
+    contribution:
+      "Designed and built an Arabic and English request, human approval, and reliable delivery system with tenant isolation, audit history, retries, and an n8n to Google Sheets integration.",
+    evidence:
+      "Verified with 59 web tests, 182 PostgreSQL assertions, 54 worker tests, six n8n contract tests, browser journeys, accessibility checks, and a synthetic public demo smoke test.",
+    scope:
+      "Shareable demonstration backed by a local stack; permanent client hosting and the optional live AI provider are scoped separately.",
+    tags: ["Next.js", "TypeScript", "Supabase", "n8n"],
+    href: "https://github.com/hazemmhassan/OpsHub",
+    image: "/assets/opshub-workflow-preview.svg",
+    imageAlt: "OpsHub English home page showing its request and approval workflow",
+    imageWidth: 1200,
+    imageHeight: 750,
+  },
+  {
+    id: "talent-search",
+    index: "02",
     type: "RAG · Search · Responsible AI",
     title: "RAG-Powered Talent Search",
     challenge:
@@ -21,7 +41,7 @@ const projects = [
   },
   {
     id: "text-to-sql",
-    index: "02",
+    index: "03",
     type: "Agentic AI · Data",
     title: "Autonomous Text-to-SQL Agent",
     challenge:
@@ -36,7 +56,7 @@ const projects = [
   },
   {
     id: "arabic-sentiment",
-    index: "03",
+    index: "04",
     type: "Arabic NLP · Evaluation",
     title: "Arabic Sentiment Classifier",
     challenge:
@@ -58,7 +78,7 @@ const services = [
   ["01", "AI knowledge assistants", "A scoped assistant that searches private documents and returns answers with visible supporting evidence.", ["RAG", "Hybrid search", "Evaluation"]],
   ["02", "AI data assistants", "A guarded assistant that turns business questions into traceable queries and understandable answers.", ["SQL", "Tool use", "Guardrails"]],
   ["03", "NLP and model evaluation", "A measurable NLP prototype with benchmarking, error analysis, and a simple review interface.", ["Classification", "Metrics", "Arabic NLP"]],
-  ["04", "AI feature backends & APIs", "Backend foundations that connect models, data, and user-facing applications through clear interfaces.", ["FastAPI", "Supabase", "REST"]],
+  ["04", "Workflow automation systems", "A dependable request, review, or data workflow that connects forms, databases, APIs, and the tools your team already uses.", ["n8n", "Supabase", "APIs"]],
 ];
 
 const problems = [
@@ -70,8 +90,8 @@ const problems = [
 const skillGroups = [
   ["Generative AI & NLP", ["Python", "LangChain", "RAG", "FAISS", "BM25", "Hugging Face Transformers", "Embeddings", "Prompt engineering", "Gemini"]],
   ["Machine Learning & Evaluation", ["PyTorch", "TensorFlow", "scikit-learn", "AI response evaluation", "XGBoost", "LightGBM", "Pandas", "NumPy"]],
-  ["Backend & Data", ["FastAPI", "Supabase", "Node.js", "REST APIs", "SQL", "MySQL", "Docker"]],
-  ["Interfaces & Visualization", ["Streamlit", "Gradio", "React", "Plotly"]],
+  ["Backend & Data", ["FastAPI", "Supabase", "PostgreSQL", "Row Level Security", "Node.js", "REST APIs", "Webhooks", "SQL", "Docker"]],
+  ["Interfaces & Automation", ["Next.js", "TypeScript", "React", "n8n", "Google Sheets", "Playwright", "RTL interfaces", "Streamlit", "Gradio"]],
 ];
 
 const experience = [
@@ -238,6 +258,7 @@ function ContactForm() {
         <select id="contact-project-type" name="project_type" defaultValue="" required>
           <option value="" disabled>Select a project type</option>
           <option value="AI assistant">AI assistant</option>
+          <option value="Workflow automation">Workflow automation</option>
           <option value="NLP or model evaluation">NLP or model evaluation</option>
           <option value="AI backend or API">AI backend or API</option>
           <option value="Other">Other / not sure yet</option>
@@ -282,7 +303,7 @@ export default function App() {
       <header className="site-header"><div className="container header-inner"><BrandMark /><nav className="desktop-nav" aria-label="Primary navigation"><a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#experience">Experience</a><a className="nav-cta" href="mailto:hazemhassan830@gmail.com">Let's talk <ArrowIcon /></a></nav><details className="mobile-nav"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="#about" onClick={closeMobileMenu}>About</a><a href="#services" onClick={closeMobileMenu}>Services</a><a href="#work" onClick={closeMobileMenu}>Work</a><a href="#experience" onClick={closeMobileMenu}>Experience</a><a href="#contact" onClick={closeMobileMenu}>Contact</a></nav></details></div></header>
       <main id="main-content">
         <section className="hero" id="top"><div className="container hero-grid">
-          <div className="hero-copy"><p className="eyebrow hero-eyebrow"><span className="status-dot" /> AI Engineer</p><h1>Hazem Hassan</h1><p className="hero-positioning">I design and build practical AI applications that help individuals, startups, and teams reduce repetitive work and use their information more effectively.</p><p className="hero-lede">From AI assistants and NLP systems to evaluation and backend integration, I turn a clearly defined problem into an inspectable end-to-end prototype.</p><div className="hero-actions"><a className="button button-primary" href="#work">View selected work <ArrowIcon /></a><a className="button button-secondary" href="mailto:hazemhassan830@gmail.com">Discuss a project</a></div><div className="availability"><span className="avatar-mark">HH</span><p><strong>Available for remote AI projects</strong>Alexandria, Egypt</p></div></div>
+          <div className="hero-copy"><p className="eyebrow hero-eyebrow"><span className="status-dot" /> AI Engineer</p><h1>Hazem Hassan</h1><p className="hero-positioning">I design and build practical AI and workflow systems that help individuals, startups, and teams reduce repetitive work and use their information more effectively.</p><p className="hero-lede">From AI assistants and NLP systems to reliable business automation, I turn a clearly defined problem into an inspectable end-to-end solution.</p><div className="hero-actions"><a className="button button-primary" href="#work">View selected work <ArrowIcon /></a><a className="button button-secondary" href="mailto:hazemhassan830@gmail.com">Discuss a project</a></div><div className="availability"><span className="avatar-mark">HH</span><p><strong>Available for remote AI and automation projects</strong>Alexandria, Egypt</p></div></div>
           <Portrait />
         </div></section>
 
@@ -290,9 +311,9 @@ export default function App() {
 
         <section className="section focus-section" id="focus" aria-labelledby="focus-title"><div className="container"><SectionHeading eyebrow="My focus" title="Problems I help solve." description="AI is most useful when it reduces a real burden and leaves people with a result they can understand and review." id="focus-title" /><div className="problem-grid">{problems.map(([title, description]) => <article key={title}><span aria-hidden="true" /><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
 
-        <section className="section services-section" id="services" aria-labelledby="services-title"><div className="container"><SectionHeading eyebrow="What I can build" title="Services" description="Practical AI work, clearly scoped for teams exploring how language models and machine learning can make their information easier to search, understand, and act on." id="services-title" /><div className="service-grid">{services.map(([number, title, description, tags]) => <article className="service-card" key={number}><span className="service-number">{number}</span><h3>{title}</h3><p>{description}</p><ul className="service-tags">{tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></article>)}</div></div></section>
+        <section className="section services-section" id="services" aria-labelledby="services-title"><div className="container"><SectionHeading eyebrow="What I can build" title="Services" description="Practical AI and automation work, clearly scoped around the process, information, and result your team needs." id="services-title" /><div className="service-grid">{services.map(([number, title, description, tags]) => <article className="service-card" key={number}><span className="service-number">{number}</span><h3>{title}</h3><p>{description}</p><ul className="service-tags">{tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></article>)}</div></div></section>
 
-        <section className="section" id="work" aria-label="Selected work"><div className="container"><SectionHeading eyebrow="Selected work" title="Systems built around real constraints." description="Three projects showing how I retrieve evidence, constrain model behavior, evaluate results, and turn technical workflows into usable applications." id="work-title" /><div className="project-list">{projects.map((project) => <ProjectCard key={project.id} project={project} />)}</div></div></section>
+        <section className="section" id="work" aria-label="Selected work"><div className="container"><SectionHeading eyebrow="Selected work" title="Systems built around real constraints." description="Four projects showing how I automate business workflows, retrieve evidence, constrain model behavior, evaluate results, and turn technical systems into usable applications." id="work-title" /><div className="project-list">{projects.map((project) => <ProjectCard key={project.id} project={project} />)}</div></div></section>
 
         <section className="section skills-section" id="skills" aria-labelledby="skills-title"><div className="container"><SectionHeading eyebrow="Toolkit" title="Technical skills" description="Tools I have used across AI, machine learning, evaluation, backend development, data work, and application interfaces." id="skills-title" /><div className="skills-grid">{skillGroups.map(([group, items]) => <article key={group}><h3>{group}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div></div></section>
 
@@ -304,7 +325,7 @@ export default function App() {
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="container contact-grid"><div className="contact-intro"><p className="eyebrow eyebrow-light">Have a project in mind?</p><h2 id="contact-title">Tell me what you want AI to improve.</h2><p>Share the process, available information, and the result you need. I’ll help turn the idea into a clear and realistic technical scope.</p><div className="contact-links"><a href="mailto:hazemhassan830@gmail.com">Email me directly <ExternalIcon /></a><a href="https://www.linkedin.com/in/hazem-hassan19" target="_blank" rel="noreferrer" aria-label="Contact on LinkedIn">LinkedIn <ExternalIcon /></a><a href="https://github.com/hazemmhassan" target="_blank" rel="noreferrer">GitHub <ExternalIcon /></a></div></div><ContactForm /></div></section>
       </main>
-      <footer><div className="container footer-inner"><BrandMark /><p>Generative AI · RAG · NLP · Backend systems</p><a href="#top">Back to top ↑</a></div></footer>
+      <footer><div className="container footer-inner"><BrandMark /><p>AI · RAG · Automation · Backend systems</p><a href="#top">Back to top ↑</a></div></footer>
     </>
   );
 }

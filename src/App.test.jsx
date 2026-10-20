@@ -80,12 +80,19 @@ describe("portfolio homepage", () => {
     expect(sectionIds.indexOf("work")).toBeLessThan(sectionIds.indexOf("skills"));
   });
 
-  test("presents exactly three selected projects with credible evidence", () => {
+  test("presents OpsHub first among four selected projects with credible evidence", () => {
     render(<App />);
 
     const work = screen.getByRole("region", { name: /selected work/i });
     const projects = within(work).getAllByRole("article");
-    expect(projects).toHaveLength(3);
+    expect(projects).toHaveLength(4);
+    expect(projects[0]).toHaveTextContent(/OpsHub/i);
+    expect(projects[0]).toHaveTextContent(/Arabic.*English/i);
+    expect(projects[0]).toHaveTextContent(/59 web tests/i);
+    expect(within(projects[0]).getByRole("link", { name: /view code/i })).toHaveAttribute(
+      "href",
+      "https://github.com/hazemmhassan/OpsHub",
+    );
     expect(within(work).getByText(/220 anonymized resumes/i)).toBeInTheDocument();
     expect(within(work).getAllByText(/read-only SQL/i).length).toBeGreaterThanOrEqual(1);
     expect(within(work).getByText(/0\.802 to 0\.860/i)).toBeInTheDocument();
@@ -106,10 +113,29 @@ describe("portfolio homepage", () => {
     expect(within(services).getByText(/AI knowledge assistants/i)).toBeInTheDocument();
     expect(within(services).getByText(/AI data assistants/i)).toBeInTheDocument();
     expect(within(services).getByText(/NLP and model evaluation/i)).toBeInTheDocument();
+    expect(within(services).getByText(/Workflow automation systems/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /email me/i })).toHaveAttribute(
       "href",
       "mailto:hazemhassan830@gmail.com",
     );
+  });
+
+  test("lists the engineering skills demonstrated by OpsHub", () => {
+    render(<App />);
+
+    const skills = screen.getByRole("region", { name: /technical skills/i });
+    for (const skill of [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Row Level Security",
+      "n8n",
+      "Webhooks",
+      "Playwright",
+      "RTL interfaces",
+    ]) {
+      expect(within(skills).getByText(skill, { exact: true })).toBeInTheDocument();
+    }
   });
 
   test("provides an accessible project enquiry form and direct contact fallbacks", () => {
@@ -119,6 +145,9 @@ describe("portfolio homepage", () => {
     expect(within(contact).getByLabelText(/^Name$/i)).toBeRequired();
     expect(within(contact).getByLabelText(/^Email$/i)).toBeRequired();
     expect(within(contact).getByLabelText(/What do you need help with/i)).toBeRequired();
+    expect(
+      within(contact).getByRole("option", { name: /workflow automation/i }),
+    ).toBeInTheDocument();
     expect(within(contact).getByLabelText(/Project details/i)).toBeRequired();
     expect(within(contact).getByRole("button", { name: /send enquiry/i })).toBeEnabled();
     expect(within(contact).getByRole("link", { name: /email me directly/i })).toHaveAttribute(
